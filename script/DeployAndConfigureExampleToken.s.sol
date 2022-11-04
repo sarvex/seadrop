@@ -12,16 +12,16 @@ import { PublicDrop } from "../src/lib/SeaDropStructs.sol";
 contract DeployAndConfigureExampleToken is Script {
     // Addresses
     address seadrop = 0x00005EA00Ac477B1030CE78506496e8C2dE24bf5;
-    address creator = 0x26faf8AE18d15Ed1CA0563727Ad6D4Aa02fb2F80;
-    address feeRecipient = 0x0000a26b00c1F0DF003000390027140000fAa719;
+    address creator = 0x39e493CA97dC6320210c5F83A1473b85b7Ac45BA;  // my OS employee wallet
+    address feeRecipient = 0xD18F24611D033268fBD91f71F8F688aA766178C0; // The Hundreds creator fee address
 
     // Token config
-    uint256 maxSupply = 100;
+    uint256 maxSupply = 5000;
 
     // Drop config
     uint16 feeBps = 500; // 5%
-    uint80 mintPrice = 0.0001 ether;
-    uint16 maxTotalMintableByWallet = 5;
+    uint80 mintPrice = 0.25 ether;
+    uint16 maxTotalMintableByWallet = 10;
 
     function run() external {
         vm.startBroadcast();
@@ -32,7 +32,7 @@ contract DeployAndConfigureExampleToken is Script {
         // This example uses ERC721SeaDrop. For separate Owner and
         // Administrator privileges, use ERC721PartnerSeaDrop.
         ERC721SeaDrop token = new ERC721SeaDrop(
-            "My Example Token",
+            "Badam Bomb Squad",
             "ExTKN",
             allowedSeadrop
         );
@@ -47,8 +47,8 @@ contract DeployAndConfigureExampleToken is Script {
             seadrop,
             PublicDrop(
                 mintPrice,
-                uint48(block.timestamp), // start time
-                uint48(block.timestamp) + 1000, // end time
+                1668110400, // start time
+                1676059200, // end time
                 maxTotalMintableByWallet,
                 feeBps,
                 true
